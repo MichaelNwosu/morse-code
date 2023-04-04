@@ -32,7 +32,9 @@ function Words () {
 }
 // Press a to input a dot
 input.onButtonPressed(Button.A, function () {
-    Text = "" + Text + "."
+    if (Enter_Password == "True") {
+        Text = "" + Text + "."
+    }
 })
 function Submit () {
     if (Text == A) {
@@ -143,15 +145,20 @@ function Submit () {
 }
 // Press this to submit the letter
 input.onButtonPressed(Button.AB, function () {
-    Submit()
-    basic.pause(100)
-    basic.clearScreen()
+    if (Enter_Password == "True") {
+        Submit()
+        basic.pause(100)
+        basic.clearScreen()
+    }
 })
 // Press this for a dash
 input.onButtonPressed(Button.B, function () {
-    Text = "" + Text + "-"
+    if (Enter_Password == "True") {
+        Text = "" + Text + "-"
+    }
 })
 let Show = ""
+let Enter_Password = ""
 let Text = ""
 let Z = ""
 let Y = ""
@@ -179,10 +186,16 @@ let D = ""
 let C = ""
 let B = ""
 let A = ""
-Words()
+images.createImage(`
+    . # # # .
+    # . . . #
+    # # # # #
+    # # # # #
+    # # # # #
+    `).showImage(0)
 // Press to show the word
 basic.forever(function () {
-    if (input.compassHeading() < 45) {
+    if (true) {
         basic.showString(Show)
     }
 })
