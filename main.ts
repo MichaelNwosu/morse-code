@@ -2,6 +2,10 @@ enum RadioMessage {
     message1 = 49434
 }
 function Words () {
+    Entry_Box = ""
+    Enter_Password = "False"
+    Loop = 0
+    Password = "ABAB"
     A = ".-"
     B = "-..."
     C = "-.-."
@@ -30,11 +34,12 @@ function Words () {
     Z = "--.."
     Text = ""
 }
-// Press a to input a dot
 input.onButtonPressed(Button.A, function () {
-    if (Enter_Password == "True") {
-        Text = "" + Text + "."
-    }
+    Stop_Loop()
+    basic.showString("A")
+    Entry_Box = "A"
+    basic.pause(500)
+    basic.clearScreen()
 })
 function Submit () {
     if (Text == A) {
@@ -143,6 +148,11 @@ function Submit () {
     }
     Text = ""
 }
+function Stop_Loop () {
+    Loop = 1
+    basic.pause(100)
+    basic.clearScreen()
+}
 // Press this to submit the letter
 input.onButtonPressed(Button.AB, function () {
     if (Enter_Password == "True") {
@@ -158,7 +168,6 @@ input.onButtonPressed(Button.B, function () {
     }
 })
 let Show = ""
-let Enter_Password = ""
 let Text = ""
 let Z = ""
 let Y = ""
@@ -186,16 +195,21 @@ let D = ""
 let C = ""
 let B = ""
 let A = ""
-images.createImage(`
+let Password = ""
+let Loop = 0
+let Enter_Password = ""
+let Entry_Box = ""
+Words()
+basic.showLeds(`
     . # # # .
     # . . . #
     # # # # #
     # # # # #
     # # # # #
-    `).showImage(0)
+    `)
 // Press to show the word
 basic.forever(function () {
     if (true) {
-        basic.showString(Show)
+        basic.showString("" + (Show))
     }
 })
